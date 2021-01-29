@@ -13,7 +13,7 @@ const Query = `
 const Mutation = `
   type Mutation {
     addUser(
-      name: String!
+      username: String!
       password: String!
     ): User!
   }

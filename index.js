@@ -9,9 +9,16 @@ const { ApolloServer } = require("apollo-server-express");
 // SCHEMA
 const executableSchema = require("./src/schema");
 
+// AUTHORIZATION
+const authorization = require("./utils/auth");
+
 //SERVER
 const server = new ApolloServer({
   schema: executableSchema,
+  context: async ({ req }) => {
+    const auth = req ? req.headers.authorization : null;
+    return authorization.verify(auth);
+  },
 });
 
 const app = express();

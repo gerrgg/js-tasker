@@ -1,12 +1,16 @@
 const bcrypt = require("bcrypt");
-const { UserInputError } = require("apollo-server-express");
+
+const {
+  UserInputError,
+  AuthenticationError,
+} = require("apollo-server-express");
+
 const User = require("../models/user");
 
 module.exports = {
   typeDef: `
   type User {
     username: String!,
-    id: ID!
   }`,
   resolvers: {
     Query: {
@@ -25,7 +29,9 @@ module.exports = {
         });
       },
 
-      removeUser: async (root, args) => {
+      removeUser: async (root, args, { currentUser }) => {
+        if (!currentUser) throw new AuthenticationError("You must login first");
+
         const user = User.findById(args.id);
 
         if (!user) {

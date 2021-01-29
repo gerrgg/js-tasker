@@ -6,7 +6,6 @@ module.exports = {
   typeDef: `
   type User {
     username: String!,
-    passwordHash: String!,
     id: ID!
   }`,
   resolvers: {
@@ -24,6 +23,19 @@ module.exports = {
             invalidArgs: args,
           });
         });
+      },
+
+      removeUser: async (root, args) => {
+        const user = User.findById(args.id);
+
+        if (!user) {
+          throw new UserInputError("user not found", {
+            invalidArgs: args.id,
+          });
+        }
+
+        await User.findByIdAndRemove(args.id);
+        return user;
       },
     },
   },

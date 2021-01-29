@@ -16,6 +16,9 @@ const Mutation = `
       username: String!
       password: String!
     ): User!
+    removeUser(
+      id: String!
+    ): User
   }
 `;
 

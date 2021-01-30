@@ -10,7 +10,6 @@ const Query = `
     allTasks: [Task!]
     me: User
     allUsers: [User!]
-    userCount: Int!
   }
 `;
 

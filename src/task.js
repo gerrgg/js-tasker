@@ -43,18 +43,38 @@ module.exports = {
         const task = await Task.findById(args.id);
 
         if (!task) {
-          throw new UserInputError("task not found", {
+          throw new UserInputError("task does not exist", {
             invalidArgs: args.id,
           });
         }
 
-        console.log(task.user, currentUser._id);
-
-        if (String(task.user) === String(currentUser._id)) {
+        // if user null or task's user matches current user
+        if (!task.user || String(task.user) === String(currentUser._id)) {
           return Task.findByIdAndRemove(args.id);
         }
 
         throw new AuthenticationError("You are not allowed to do that!");
+      },
+
+      togglePriority: async (root, args, { currentUser }) => {
+        if (!currentUser) throw new AuthenticationError("You must login first");
+
+        const task = await Task.findById(args.id);
+
+        if (!task) {
+          throw new UserInputError("task does not exist", {
+            invalidArgs: args.id,
+          });
+        }
+
+        try {
+          task.priority = args.priority;
+          return task.save();
+        } catch (error) {
+          throw new UserInputError(error.message, {
+            invalidArgs: args.priority,
+          });
+        }
       },
     },
   },

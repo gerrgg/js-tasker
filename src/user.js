@@ -11,6 +11,8 @@ module.exports = {
   typeDef: `
   type User {
     username: String!,
+    passwordHash: String
+    id: ID
   }`,
   resolvers: {
     Query: {
@@ -40,8 +42,7 @@ module.exports = {
           });
         }
 
-        await User.findByIdAndRemove(args.id);
-        return user;
+        return User.findByIdAndRemove(args.id);
       },
     },
   },

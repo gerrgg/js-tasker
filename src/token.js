@@ -1,5 +1,7 @@
 const { UserInputError } = require("apollo-server-express");
 
+const bcrypt = require("bcrypt");
+
 const User = require("../models/user");
 
 const jwt = require("jsonwebtoken");
@@ -11,23 +13,31 @@ module.exports = {
   type Token {
     value: String!,
   }`,
-  Query: {
-    me: (root, args, { currentUser }) => currentUser,
-  },
-  Mutation: {
-    login: async (root, args) => {
-      const user = await User.findOne({ username: args.username });
+  resolvers: {
+    Query: {
+      me: (root, args, { currentUser }) => currentUser,
+    },
+    Mutation: {
+      login: async (root, args) => {
+        const user = await User.findOne({ username: args.username });
 
-      if (!user || args.password !== "secred") {
-        throw new UserInputError("wrong credentials");
-      }
+        if (!user) {
+          throw new UserInputError("wrong credentials");
+        }
 
-      const userForToken = {
-        username: user.username,
-        id: user._id,
-      };
+        const match = await bcrypt.compare(args.password, user.passwordHash);
 
-      return { value: jwt.sign(userForToken, JWT_SECRET) };
+        if (!match) {
+          throw new UserInputError("wrong credentials");
+        }
+
+        const userForToken = {
+          username: user.username,
+          id: user._id,
+        };
+
+        return { value: jwt.sign(userForToken, JWT_SECRET) };
+      },
     },
   },
 };

@@ -10,7 +10,8 @@ const User = require("../models/user");
 module.exports = {
   typeDef: `
   type User {
-    username: String!,
+    id: ID!,
+    username: String,
     passwordHash: String
   }`,
   resolvers: {

@@ -31,6 +31,10 @@ const Mutation = `
       priority: Boolean
     ): Task!
 
+    removeTask(
+      id: String!
+    ): Task
+
     login(username: String!, password: String!): Token
   }
 `;

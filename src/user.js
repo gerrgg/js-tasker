@@ -12,7 +12,6 @@ module.exports = {
   type User {
     username: String!,
     passwordHash: String
-    id: ID
   }`,
   resolvers: {
     Query: {

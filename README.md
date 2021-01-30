@@ -17,7 +17,7 @@ Create yourself a todo list and keep it forever. Built on ApolloServer, GraphQL 
 ## Task
 
 - Content String!
-- Priority Int!
+- Priority Bool!
 - Complete Bool!
-- User User!
-- Due Date String
+- Late Bool!
+- User User (leave nullable for guest sessions)

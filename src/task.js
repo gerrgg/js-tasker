@@ -56,7 +56,7 @@ module.exports = {
         throw new AuthenticationError("You are not allowed to do that!");
       },
 
-      togglePriority: async (root, args, { currentUser }) => {
+      updateTaskPriority: async (root, args, { currentUser }) => {
         if (!currentUser) throw new AuthenticationError("You must login first");
 
         const task = await Task.findById(args.id);
@@ -73,6 +73,69 @@ module.exports = {
         } catch (error) {
           throw new UserInputError(error.message, {
             invalidArgs: args.priority,
+          });
+        }
+      },
+
+      updateTaskContent: async (root, args, { currentUser }) => {
+        if (!currentUser) throw new AuthenticationError("You must login first");
+
+        const task = await Task.findById(args.id);
+
+        if (!task) {
+          throw new UserInputError("task does not exist", {
+            invalidArgs: args.id,
+          });
+        }
+
+        try {
+          task.content = args.content;
+          return task.save();
+        } catch (error) {
+          throw new UserInputError(error.message, {
+            invalidArgs: args.content,
+          });
+        }
+      },
+
+      updateTaskComplete: async (root, args, { currentUser }) => {
+        if (!currentUser) throw new AuthenticationError("You must login first");
+
+        const task = await Task.findById(args.id);
+
+        if (!task) {
+          throw new UserInputError("task does not exist", {
+            invalidArgs: args.id,
+          });
+        }
+
+        try {
+          task.complete = args.complete;
+          return task.save();
+        } catch (error) {
+          throw new UserInputError(error.message, {
+            invalidArgs: args.complete,
+          });
+        }
+      },
+
+      updateTaskDueDate: async (root, args, { currentUser }) => {
+        if (!currentUser) throw new AuthenticationError("You must login first");
+
+        const task = await Task.findById(args.id);
+
+        if (!task) {
+          throw new UserInputError("task does not exist", {
+            invalidArgs: args.id,
+          });
+        }
+
+        try {
+          task.due = args.due;
+          return task.save();
+        } catch (error) {
+          throw new UserInputError(error.message, {
+            invalidArgs: args.complete,
           });
         }
       },

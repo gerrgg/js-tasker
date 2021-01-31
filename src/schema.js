@@ -35,9 +35,24 @@ const Mutation = `
       id: String!
     ): Task
 
-    togglePriority(
+    updateTaskPriority(
       id: String!
       priority: Boolean!
+    ): Task
+
+    updateTaskContent(
+      id: String!
+      content: String!
+    ): Task
+
+    updateTaskComplete(
+      id: String!
+      complete: Boolean!
+    ): Task
+
+    updateTaskDueDate(
+      id: String!
+      due: String!
     ): Task
 
     login(username: String!, password: String!): Token

@@ -1,6 +1,8 @@
 require("dotenv").config();
 require("./utils/database");
 
+const cors = require("cors");
+
 const express = require("express");
 
 // APOLLO-SERVER
@@ -22,6 +24,7 @@ const server = new ApolloServer({
 });
 
 const app = express();
+app.use(cors());
 
 // APPLY MIDDLEWARE
 app.use(express.static("build"));

@@ -1,11 +1,15 @@
+import React, { useState } from "react";
 import Backdrop from "./components/Backdrop";
 import GlobalStyles from "./GlobalStyles";
+import Login from "./pages/Login";
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <>
       <GlobalStyles />
-      <Backdrop>Hello</Backdrop>
+      <Backdrop>{!user ? <Login /> : null}</Backdrop>
     </>
   );
 }

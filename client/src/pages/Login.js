@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useField from "../hooks/useField";
 import styled from "styled-components";
 import Spacer from "../components/Spacer";
@@ -9,36 +9,71 @@ import Button from "../components/Button";
 import TextLink from "../components/TextLink";
 
 const Login = () => {
-  const username = useField("text");
-  const password = useField("password");
+  const [page, setPage] = useState("login");
 
   return (
     <Wrapper>
-      <Form>
-        <Heading level={"2"} primary center>
-          Login
-        </Heading>
-        <FormControl>
-          <TextField {...username} placeholder="Username" autofill="username" />
-        </FormControl>
-        <FormControl>
-          <TextField {...password} placeholder="Password" />
-        </FormControl>
-        <Flex>
-          <TextLink>Forgot password?</TextLink>
-          <Button secondary>Submit</Button>
-        </Flex>
-        <Spacer size={64} />
-        <TextLink href="#" primary center>
-          New here? Create an account.
-        </TextLink>
-      </Form>
+      {page === "login" ? (
+        <LoginForm setPage={setPage} />
+      ) : (
+        <RegisterForm setPage={setPage} />
+      )}
     </Wrapper>
   );
 };
 
+const LoginForm = ({ setPage }) => {
+  const username = useField("text");
+  const password = useField("password");
+  return (
+    <Form>
+      <Heading level={"2"} primary center>
+        Welcome back, Friend. 👋
+      </Heading>
+      <FormControl>
+        <TextField {...username} placeholder="Username" />
+      </FormControl>
+      <FormControl>
+        <TextField {...password} placeholder="Password" />
+      </FormControl>
+      <Flex>
+        <TextLink>Forgot password?</TextLink>
+        <Button secondary>Login</Button>
+      </Flex>
+      <Spacer size={64} />
+      <Button onClick={() => setPage("register")} text>
+        New here? Create an account.
+      </Button>
+    </Form>
+  );
+};
+
+const RegisterForm = ({ setPage }) => {
+  const username = useField("text");
+  const password = useField("password");
+  return (
+    <Form>
+      <Heading level={"2"} primary center>
+        Give us your soul 👻
+      </Heading>
+      <FormControl>
+        <TextField {...username} placeholder="Username" />
+      </FormControl>
+      <FormControl>
+        <TextField {...password} placeholder="Password" />
+      </FormControl>
+
+      <Button secondary>Register</Button>
+      <Spacer size={64} />
+      <Button onClick={() => setPage("login")} text>
+        Already a user? Login here.
+      </Button>
+    </Form>
+  );
+};
+
 const Wrapper = styled.div`
-  padding: 1rem;
+  padding: 0 1rem;
   margin: auto;
   height: 100%;
   display: flex;

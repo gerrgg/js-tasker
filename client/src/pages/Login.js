@@ -31,17 +31,17 @@ const LoginForm = ({ setPage }) => {
         Welcome back, Friend. 👋
       </Heading>
       <FormControl>
-        <TextField {...username} placeholder="Username" />
+        <TextField {...username} placeholder="Username" autofill="username" />
       </FormControl>
       <FormControl>
-        <TextField {...password} placeholder="Password" />
+        <TextField {...password} placeholder="Password" autofill="password" />
       </FormControl>
       <Flex>
         <TextLink>Forgot password?</TextLink>
         <Button secondary>Login</Button>
       </Flex>
       <Spacer size={64} />
-      <Button onClick={() => setPage("register")} text>
+      <Button onClick={() => setPage("register")} text underline>
         New here? Create an account.
       </Button>
     </Form>
@@ -54,13 +54,17 @@ const RegisterForm = ({ setPage }) => {
   return (
     <Form>
       <Heading level={"2"} primary center>
-        Give us your soul 👻
+        💎 Sell us your Soul! 💎
       </Heading>
       <FormControl>
-        <TextField {...username} placeholder="Username" />
+        <TextField {...username} placeholder="Username" autofill="username" />
       </FormControl>
       <FormControl>
-        <TextField {...password} placeholder="Password" />
+        <TextField
+          {...password}
+          placeholder="Password"
+          autofill="new-password"
+        />
       </FormControl>
 
       <Button secondary>Register</Button>

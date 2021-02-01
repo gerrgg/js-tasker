@@ -10,7 +10,7 @@ html {
   --color-alert-info: #2e66ae;
   --color-dark-grey: #040404;
   --color-pretty-pink: #c87497;
-  --color-redish-orange: #d2471c;
+  --color-redish-orange: #238db7;
 }
 
 body {

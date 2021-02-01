@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Loader from "./Loader";
 
 const getBackgroundImage = () => {
-  return `https://picsum.photos/seed/${Math.random(1, 1000)}/${
+  return `https://picsum.photos/seed/${Math.floor(Math.random() * 100 + 1)}/${
     window.innerWidth
   }/${window.innerHeight}`;
 };

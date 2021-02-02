@@ -124,3 +124,9 @@ Return
   }
 }
 ```
+
+## Dashboard
+
+This is where the magic happens, should you decide to sell your soul.
+
+<img src="./dashboard.jpg">

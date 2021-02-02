@@ -4,12 +4,14 @@ import GlobalStyles from "./GlobalStyles";
 import Login from "./pages/Login";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(
+    localStorage.getItem("js-tasker") ? localStorage.getItem("js-tasker") : null
+  );
 
   return (
     <>
       <GlobalStyles />
-      <Backdrop>{!user ? <Login /> : null}</Backdrop>
+      <Backdrop>{!token ? <Login setToken={setToken} /> : null}</Backdrop>
     </>
   );
 }

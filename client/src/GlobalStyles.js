@@ -2,9 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 
+*{margin: 0}
 
 html {
-
   --color-dark-blue: #080809;
   --color-hot-orange: #c27b00;
   --color-alert-info: #2e66ae;

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { FaSignOutAlt } from "react-icons/fa";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
 const Dashboard = ({ setToken }) => {
   const logout = () => {
@@ -8,42 +9,25 @@ const Dashboard = ({ setToken }) => {
     localStorage.removeItem("js-tasker");
   };
   return (
-    <Header>
-      <Inner>
-        <Logo href="#">To Do</Logo>
-        <LogoutButton onClick={() => logout()}>
-          <FaSignOutAlt size={32} />
-        </LogoutButton>
-      </Inner>
-    </Header>
+    <Wrapper>
+      <Sidebar />
+      <div style={{ width: "100%" }}>
+        <Header logout={logout} />
+        <Content />
+      </div>
+    </Wrapper>
   );
 };
 
-const LogoutButton = styled.button`
-  border: 0;
-  color: inherit;
-  background: transparent;
-  cursor: pointer;
-  color: var(--color-secondary);
-`;
-
-const Header = styled.header`
+const Wrapper = styled.div`
   width: 100%;
-  background-color: var(--color-dark-grey);
-  padding: 0.5rem 0;
-`;
-
-const Inner = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0.5rem;
 `;
 
-const Logo = styled.a`
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0.8;
 `;
-
 export default Dashboard;

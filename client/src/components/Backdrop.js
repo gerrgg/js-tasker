@@ -88,16 +88,19 @@ const Wrapper = styled.div`
 
 const Controls = styled.div`
   position: absolute;
+  bottom: 0;
   right: 0;
-  color: #333;
+  color: var(--color-primary);
   padding: 0.5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 1;
 `;
 
 const BackgroundButton = styled(Button)`
+  color: inherit;
   padding: 0.25rem 0.5rem;
   border: 0;
 `;

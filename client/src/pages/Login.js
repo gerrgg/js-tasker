@@ -13,7 +13,7 @@ const Login = ({ setToken }) => {
   const username = useField("text");
   const password = useField("password");
 
-  const [register, registerResult] = useMutation(REGISTER_USER, {
+  const [register] = useMutation(REGISTER_USER, {
     onError: (error) => {
       console.log(error);
     },

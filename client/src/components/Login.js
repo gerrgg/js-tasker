@@ -8,7 +8,7 @@ import TextLink from "./TextLink";
 
 export const LoginForm = ({ setPage, loginUser, username, password }) => (
   <Form onSubmit={loginUser}>
-    <Heading level={"2"} primary center>
+    <Heading level={"1"} primary center>
       Welcome back, Friend. 👋
     </Heading>
     <FormControl>
@@ -30,7 +30,7 @@ export const LoginForm = ({ setPage, loginUser, username, password }) => (
 
 export const RegisterForm = ({ setPage, registerUser, username, password }) => (
   <Form onSubmit={registerUser}>
-    <Heading level={"2"} primary center>
+    <Heading level={"1"} primary center>
       💎 Sell us your Soul! 💎
     </Heading>
     <FormControl>

@@ -12,6 +12,8 @@ const Heading = ({ level, primary, center, children }) => {
 // h2 doesnt mean anything since it gets overwritten
 const Wrapper = styled.h2`
   margin: 1rem 0 3rem;
+  font-family: "Londrina Solid", cursive;
+  letter-spacing: 1px;
   text-align: ${(props) => (props.center ? "center" : "inherit")};
   color: ${(props) => (props.primary ? "var(--color-primary)" : "white")};
 `;

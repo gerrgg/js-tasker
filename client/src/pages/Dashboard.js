@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import Content from "../components/Content";
 
 const Dashboard = ({ setToken }) => {
+  const [page, setPage] = useState("tasks");
+
   const logout = () => {
     setToken(null);
     localStorage.removeItem("js-tasker");
   };
   return (
     <Wrapper>
-      <Sidebar />
+      <Sidebar page={page} setPage={setPage} />
       <div style={{ width: "100%" }}>
         <Header logout={logout} />
-        <Content />
+        <Content page={page} />
       </div>
     </Wrapper>
   );
@@ -24,10 +27,4 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const Content = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  opacity: 0.8;
-`;
 export default Dashboard;

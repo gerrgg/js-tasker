@@ -20,14 +20,15 @@ const actions = {
   calender: FaCalendarAlt,
 };
 
-const Sidebar = () => (
+const Sidebar = ({ page, setPage }) => (
   <Aside>
     {Object.keys(actions).map((key) => {
       const Icon = actions[key];
       return (
         <SidebarButton
+          className={page === key ? "active" : ""}
           onClick={() => {
-            console.log(key);
+            setPage(key);
           }}
         >
           <Icon size={24} />
@@ -52,6 +53,9 @@ const SidebarButton = styled(Button)`
   padding: 0;
   height: 27px;
   margin-bottom: 27px;
+  &.active {
+    color: var(--color-primary);
+  }
 `;
 
 export default Sidebar;

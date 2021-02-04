@@ -12,6 +12,10 @@ const Button = styled.button`
   padding: 8px 10px;
   font-size: 1rem;
   cursor: pointer;
+  ::focus {
+    outline: 0;
+  }
+  opacity: ${(props) => (props.disabled ? "0.5" : "1")};
 `;
 
 export default Button;

@@ -3,9 +3,14 @@ import styled from "styled-components";
 export const TextField = styled.input`
   width: 100%;
   border: 1px solid transparent;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0rem;
   margin-bottom: 1rem;
   font-size: 1rem;
+  background-color: ${(props) =>
+    props.variant === "line" ? "transparent" : "line"};
+  border-bottom: ${(props) =>
+    props.variant === "line" ? "3px solid #fff" : "0"};
+  color: #fff;
 `;
 
 export const Form = styled.form`

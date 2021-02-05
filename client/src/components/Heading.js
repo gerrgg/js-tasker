@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Heading = ({ level, primary, center, children }) => {
   const tag = `h${level}`;
   return (
-    <Wrapper as={tag} primary center>
+    <Wrapper as={tag} primary={primary} center={center}>
       {children}
     </Wrapper>
   );

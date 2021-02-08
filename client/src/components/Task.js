@@ -1,24 +1,55 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { TextField } from "./Form";
+import { FormControl } from "../components/Form";
 
-const Task = () => {
-  const addTask = () => {
-    console.log("add task");
+import { TOGGLE_COMPLETE } from "../queries/task";
+import { useMutation } from "@apollo/client";
+
+const Task = ({ task }) => {
+  const [complete, setComplete] = useState(task.complete);
+
+  const [toggleComplete] = useMutation(TOGGLE_COMPLETE, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleChange = (status) => {
+    console.log(task.id, status);
+    setComplete(status);
+    toggleComplete({ variables: { id: task.id, complete: status } });
   };
 
   return (
-    <TaskField
-      onBlur={() => {
-        addTask();
-      }}
-      onClick={() => {}}
-      variant="line"
-      placeholder="Add a new task"
-    />
+    <TaskWrapper>
+      <ActionWrapper>
+        <Complete
+          type="checkbox"
+          checked={complete}
+          onChange={() => handleChange(!complete)}
+        />
+      </ActionWrapper>
+      {task.content}
+    </TaskWrapper>
   );
 };
 
-const TaskField = styled(TextField)`height: 15px; transition: height: .5s;`;
+const TaskWrapper = styled(FormControl)`
+  border-bottom: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  cursor: pointer;
+`;
+
+const ActionWrapper = styled.div`
+  padding: 0 0.5rem;
+  color: var(--color-primary);
+`;
+
+const Complete = styled.input`
+  height: 24px;
+  width: 24px;
+`;
 
 export default Task;

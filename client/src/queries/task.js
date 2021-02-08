@@ -33,3 +33,12 @@ export const MY_TASKS = gql`
     }
   }
 `;
+
+export const TOGGLE_COMPLETE = gql`
+  mutation toggleComplete($id: String!, $complete: Boolean!) {
+    updateTaskComplete(id: $id, complete: $complete) {
+      id
+      complete
+    }
+  }
+`;

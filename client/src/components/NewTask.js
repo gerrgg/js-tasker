@@ -10,7 +10,7 @@ const NewTask = () => {
   const [task, setTask] = useState("");
   const [hasFocus, setHasFocus] = useState(false);
 
-  const [addTask, result] = useMutation(ADD_TASK, {
+  const [addTask] = useMutation(ADD_TASK, {
     onError: (error) => {
       console.log(error);
     },

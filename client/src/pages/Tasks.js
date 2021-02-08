@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Heading from "../components/Heading";
-import Task from "../components/Task";
+import NewTask from "../components/NewTask";
 
 const Tasks = () => (
   <Wrapper>
     <Heading level={2} primary>
       👍 My Tasks 👍
     </Heading>
-    <Task>Write a new task</Task>
+    <NewTask />
   </Wrapper>
 );
 
 const Wrapper = styled.div`
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 `;
 
 export default Tasks;

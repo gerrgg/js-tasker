@@ -14,7 +14,6 @@ html {
 }
 
 body {
-  overflow: hidden;
   margin: 0;
 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -31,6 +30,14 @@ code {
 
 h1{
   font-size: 1.75rem;
+}
+
+input:focus {
+  outline: 0;
+}
+
+#root{
+  overflow: hidden;
 }
 
 `;

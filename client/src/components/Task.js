@@ -29,7 +29,7 @@ const Task = ({ task }) => {
           onChange={() => handleChange(!complete)}
         />
       </ActionWrapper>
-      {task.content}
+      <Content complete={complete}>{task.content}</Content>
     </TaskWrapper>
   );
 };
@@ -50,6 +50,11 @@ const ActionWrapper = styled.div`
 const Complete = styled.input`
   height: 24px;
   width: 24px;
+`;
+
+const Content = styled.p`
+  text-decoration: ${(props) => (props.complete ? "line-through" : "none")};
+  color: ${(props) => (props.complete ? "#c1c1c1" : "#fff")};
 `;
 
 export default Task;

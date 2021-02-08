@@ -16,3 +16,20 @@ export const ADD_TASK = gql`
     }
   }
 `;
+
+export const MY_TASKS = gql`
+  query {
+    myTasks {
+      id
+      content
+      created
+      due
+      priority
+      complete
+      late
+      user {
+        username
+      }
+    }
+  }
+`;

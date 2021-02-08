@@ -9,8 +9,9 @@ html {
   --color-hot-orange: #c27b00;
   --color-alert-info: #2e66ae;
   --color-dark-grey: #040404;
-  --color-primary: #c87497;
-  --color-secondary: #238db7;
+  --color-primary: #c59de6;
+  --color-primary-dark: #68388e;
+  --color-secondary: #91f9ba;
 }
 
 body {

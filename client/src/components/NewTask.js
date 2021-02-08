@@ -56,7 +56,7 @@ const TaskWrapper = styled(FormControl)`
 
 const ActionWrapper = styled.div`
   padding: 0 0.5rem;
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   width: 40px;
 `;
 
@@ -67,7 +67,8 @@ const TaskField = styled(TextField)`
   margin: 0.5rem 0;
   font-size: 1.1rem;
   ::placeholder {
-    color: var(--color-primary);
+    padding: 0 0.5rem;
+    color: var(--color-primary-dark);
     opacity: 1;
   }
 `;

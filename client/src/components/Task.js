@@ -40,6 +40,8 @@ const TaskWrapper = styled(FormControl)`
   align-items: center;
   font-weight: 400;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
 `;
 
 const ActionWrapper = styled.div`

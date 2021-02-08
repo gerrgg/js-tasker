@@ -47,9 +47,11 @@ const NewTask = () => {
 };
 
 const TaskWrapper = styled(FormControl)`
-  border-bottom: 1px solid #fff;
+  border: 1px solid #fff;
+  background-color: #fff;
   display: flex;
   align-items: center;
+  margin-bottom: 3rem;
 `;
 
 const ActionWrapper = styled.div`
@@ -61,7 +63,7 @@ const ActionWrapper = styled.div`
 const TaskField = styled(TextField)`
   background-color: transparent;
   padding: 0.25rem 0 0.5rem;
-  color: #fff;
+  color: #333;
   margin: 0.5rem 0;
   font-size: 1.1rem;
   ::placeholder {

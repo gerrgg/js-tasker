@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import styled from "styled-components";
 import Heading from "../components/Heading";

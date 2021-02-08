@@ -3,23 +3,27 @@ import styled from "styled-components";
 import { FaChevronRight, FaChevronDown } from "react-icons/fa";
 
 const Collapse = ({ text, children }) => {
-  const [show, setShow] = useState(false);
-
-  console.log(show);
+  const [show, setShow] = useState(true);
 
   return (
-    <Wrapper onClick={() => setShow(!show)}>
-      <Flex>
-        <Title>{text}</Title>
+    <Wrapper>
+      <Flex onClick={() => setShow(!show)}>
+        <Title>{`${text} (${children.length})`}</Title>
         {show ? <FaChevronDown /> : <FaChevronRight />}
       </Flex>
-      <div style={{ display: show ? "block" : "none" }}>{children}</div>
+      <Inner show={show}>{children}</Inner>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   cursor: pointer;
+`;
+
+const Inner = styled.div`
+  transition: max-height 0.15s ease-in-out;
+  max-height: ${(props) => (props.show ? "500px" : "0px")};
+  overflow: hidden;
 `;
 
 const Title = styled.h3`

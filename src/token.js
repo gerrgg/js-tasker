@@ -1,8 +1,12 @@
-const { UserInputError } = require("apollo-server-express");
+const {
+  UserInputError,
+  AuthenticationError,
+} = require("apollo-server-express");
 
 const bcrypt = require("bcrypt");
 
 const User = require("../models/user");
+const Task = require("../models/task");
 
 const jwt = require("jsonwebtoken");
 
@@ -16,6 +20,15 @@ module.exports = {
   resolvers: {
     Query: {
       me: (root, args, { currentUser }) => currentUser,
+      myTasks: async (root, args, { currentUser }) => {
+        if (!currentUser) throw new AuthenticationError("You must login first");
+
+        const tasks = await Task.find({ user: currentUser.id }).populate(
+          "user"
+        );
+
+        return tasks;
+      },
     },
     Mutation: {
       login: async (root, args) => {

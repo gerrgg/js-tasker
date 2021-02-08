@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Heading from "../components/Heading";
 import NewTask from "../components/NewTask";
+import { MY_TASKS } from "../queries/task";
 
 const Tasks = () => (
   <Wrapper>

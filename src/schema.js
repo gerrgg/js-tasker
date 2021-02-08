@@ -9,6 +9,7 @@ const Query = `
   type Query {
     allTasks: [Task!]
     me: User
+    myTasks: [Task!]
     allUsers: [User!]
   }
 `;

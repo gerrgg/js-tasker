@@ -21,20 +21,30 @@ const Tasks = () => {
         👍 My Tasks 👍
       </Heading>
       <NewTask />
-      {incompleteTasks.map((task) => (
-        <Task key={task.id} task={task} />
-      ))}
-      <Collapse text="Completed">
-        {completedTasks.map((task) => (
+      <Scrollable>
+        {incompleteTasks.map((task) => (
           <Task key={task.id} task={task} />
         ))}
-      </Collapse>
+        <Collapse text="Completed">
+          {completedTasks.map((task) => (
+            <Task key={task.id} task={task} />
+          ))}
+        </Collapse>
+      </Scrollable>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   padding: 0.5rem 1rem;
+`;
+const Scrollable = styled.div`
+  padding-right: 1rem;
+  position: fixed;
+  overflow-y: auto;
+  height: 450px;
+  width: 290px;
+  right: 0px;
 `;
 
 export default Tasks;

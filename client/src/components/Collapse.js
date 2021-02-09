@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 
 const Inner = styled.div`
   transition: max-height 0.15s ease-in-out;
-  max-height: ${(props) => (props.show ? "500px" : "0px")};
+  display: ${(props) => (props.show ? "block" : "none")};
   overflow: hidden;
 `;
 

@@ -40,13 +40,6 @@ const NewTask = () => {
 
   return (
     <TaskWrapper>
-      <ActionWrapper>
-        {hasFocus ? (
-          <input type="checkbox" style={{ width: 24, height: 24 }} />
-        ) : (
-          <FaPlus size={24} />
-        )}
-      </ActionWrapper>
       <TaskField
         onFocus={() => setHasFocus(true)}
         onBlur={({ target }) => handleBlur(target.value)}
@@ -68,7 +61,6 @@ const TaskWrapper = styled(FormControl)`
 `;
 
 const ActionWrapper = styled.div`
-  padding: 0 0.5rem;
   color: var(--color-primary-dark);
   width: 40px;
 `;

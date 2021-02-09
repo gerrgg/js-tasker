@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { TextField, FormControl } from "../components/Form";
 
 import { FaPlus } from "react-icons/fa";
-import { ADD_TASK } from "../queries/task";
+import { ADD_TASK, MY_TASKS } from "../queries/task";
 import { useMutation } from "@apollo/client";
 
 const NewTask = () => {
@@ -14,6 +14,7 @@ const NewTask = () => {
     onError: (error) => {
       console.log(error);
     },
+    refetchQueries: [{ query: MY_TASKS }],
   });
 
   const handleBlur = (content) => {
@@ -24,6 +25,17 @@ const NewTask = () => {
     }
     setTask("");
     setHasFocus(false);
+  };
+
+  /**
+   * Submit task on enter if the input has focus and the enter key is clicked
+   * @param String code
+   * @param Node target
+   */
+  const handleKeyDown = (code, target) => {
+    if (hasFocus && code === "Enter") {
+      handleBlur(target.value);
+    }
   };
 
   return (
@@ -38,6 +50,7 @@ const NewTask = () => {
       <TaskField
         onFocus={() => setHasFocus(true)}
         onBlur={({ target }) => handleBlur(target.value)}
+        onKeyDown={({ code, target }) => handleKeyDown(code, target)}
         onChange={({ target }) => setTask(target.value)}
         value={task}
         placeholder="Add a task"

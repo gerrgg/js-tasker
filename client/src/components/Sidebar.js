@@ -26,6 +26,7 @@ const Sidebar = ({ page, setPage }) => (
       const Icon = actions[key];
       return (
         <SidebarButton
+          key={key}
           className={page === key ? "active" : ""}
           onClick={() => {
             setPage(key);

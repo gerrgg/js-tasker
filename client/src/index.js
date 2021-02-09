@@ -19,7 +19,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `bearer ${token}` : null,
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -32,8 +32,8 @@ const httpLink = new HttpLink({
 });
 
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 ReactDOM.render(

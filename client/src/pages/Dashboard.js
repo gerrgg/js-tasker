@@ -1,16 +1,22 @@
 import React, { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { MY_TASKS } from "../queries/task";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Content from "../components/Content";
 
 const Dashboard = ({ setToken }) => {
+  const { client } = useQuery(MY_TASKS, { fetchPolicy: "network-only" });
+
   const [page, setPage] = useState("tasks");
 
   const logout = () => {
     setToken(null);
     localStorage.removeItem("js-tasker");
+    client.clearStore();
   };
+
   return (
     <Wrapper>
       <Sidebar page={page} setPage={setPage} />

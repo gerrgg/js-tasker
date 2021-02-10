@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { TextField, FormControl } from "../components/Form";
 
-import { FaPlus } from "react-icons/fa";
 import { ADD_TASK, MY_TASKS } from "../queries/task";
 import { useMutation } from "@apollo/client";
 
@@ -57,12 +56,10 @@ const TaskWrapper = styled(FormControl)`
   background-color: #fff;
   display: flex;
   align-items: center;
-  margin-bottom: 3rem;
-`;
-
-const ActionWrapper = styled.div`
-  color: var(--color-primary-dark);
-  width: 40px;
+  margin-left: -15px;
+  margin-right: -15px;
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const TaskField = styled(TextField)`
@@ -70,7 +67,7 @@ const TaskField = styled(TextField)`
   padding: 0.25rem 0 0.5rem;
   color: #333;
   margin: 0.5rem 0;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   ::placeholder {
     padding: 0 0.5rem;
     color: var(--color-primary-dark);

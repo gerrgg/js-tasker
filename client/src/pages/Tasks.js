@@ -17,8 +17,8 @@ const Tasks = ({ showTask }) => {
 
   return (
     <Wrapper>
-      <Heading level={1} secondary handwriting>
-        👍 My Tasks 👍
+      <Heading level={1} secondary handwriting center>
+        👍 Your Tasks 👍
       </Heading>
       <NewTask />
       <Scrollable>

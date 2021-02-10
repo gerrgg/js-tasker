@@ -27,7 +27,12 @@ const Task = ({ task, showTask }) => {
           type="checkbox"
           checked={complete}
           onChange={() => handleChange(!complete)}
-          style={{ height: 24, width: 24, opacity: 0, position: "absolute" }}
+          style={{
+            height: 24,
+            width: 24,
+            opacity: 0,
+            position: "absolute",
+          }}
         />
         <Circle complete={complete}>{complete ? <FaCheck /> : null}</Circle>
       </ActionWrapper>
@@ -51,7 +56,6 @@ const Wrapper = styled(FormControl)`
 `;
 
 const ActionWrapper = styled.div`
-  padding: 0 0.5rem;
   color: var(--color-primary);
   display: flex;
   align-items: center;
@@ -64,6 +68,7 @@ const Circle = styled.div`
     ${(props) => (props.complete ? "var(--color-primary-dark)" : "#fff")};
   background-color: ${(props) =>
     props.complete ? "var(--color-primary-dark)" : "#fff"};
+  transition: background-color 0.1s ease-in;
   color: #fff;
   border-radius: 100%;
   display: flex;
@@ -74,8 +79,9 @@ const Circle = styled.div`
 const Text = styled.p`
   text-decoration: ${(props) => (props.complete ? "line-through" : "none")};
   color: ${(props) => (props.complete ? "#c1c1c1" : "#fff")};
-  height: 18px;
   overflow: hidden;
+  padding: 0 0.5rem;
+  width: 100%;
 `;
 
 export default Task;

@@ -37,7 +37,7 @@ const Overlay = styled.div`
 `;
 
 const Wrapper = styled.div`
-  max-width: 300px;
+  max-width: 275px;
   position: fixed;
   right: 0;
   background-color: var(--color-primary);
@@ -53,4 +53,5 @@ const CloseButton = styled(Button)`
   top: 0;
   right: 0;
   width: auto;
+  color: var(--color-primary-dark);
 `;

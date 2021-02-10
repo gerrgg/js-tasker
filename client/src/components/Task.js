@@ -21,7 +21,7 @@ const Task = ({ task, showTask }) => {
   };
 
   return (
-    <Wrapper onClick={() => showTask()}>
+    <Wrapper>
       <ActionWrapper>
         <input
           type="checkbox"
@@ -31,7 +31,9 @@ const Task = ({ task, showTask }) => {
         />
         <Circle complete={complete}>{complete ? <FaCheck /> : null}</Circle>
       </ActionWrapper>
-      <Text complete={complete}>{task.content}</Text>
+      <Text complete={complete} onClick={() => showTask()}>
+        {task.content}
+      </Text>
     </Wrapper>
   );
 };

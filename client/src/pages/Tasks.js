@@ -7,7 +7,7 @@ import Task from "../components/Task";
 import { MY_TASKS } from "../queries/task";
 import Collapse from "../components/Collapse";
 
-const Tasks = () => {
+const Tasks = ({ showTask }) => {
   const result = useQuery(MY_TASKS);
 
   const tasks = result.loading ? [] : result.data.myTasks;
@@ -23,11 +23,11 @@ const Tasks = () => {
       <NewTask />
       <Scrollable>
         {incompleteTasks.map((task) => (
-          <Task key={task.id} task={task} />
+          <Task key={task.id} task={task} showTask={showTask} />
         ))}
         <Collapse text="Completed">
           {completedTasks.map((task) => (
-            <Task key={task.id} task={task} />
+            <Task key={task.id} task={task} showTask={showTask} />
           ))}
         </Collapse>
       </Scrollable>

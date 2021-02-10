@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Tasks from "../pages/Tasks";
 
-const Content = ({ page }) => (
+const Content = ({ page, showTask }) => (
   <Wrapper>
     {
       {
-        tasks: <Tasks />,
+        tasks: <Tasks showTask={showTask} />,
       }[page]
     }
   </Wrapper>

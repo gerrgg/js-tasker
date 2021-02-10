@@ -6,7 +6,7 @@ import { TOGGLE_COMPLETE } from "../queries/task";
 import { useMutation } from "@apollo/client";
 import { FaCheck } from "react-icons/fa";
 
-const Task = ({ task }) => {
+const Task = ({ task, showTask }) => {
   const [complete, setComplete] = useState(task.complete);
 
   const [toggleComplete] = useMutation(TOGGLE_COMPLETE, {
@@ -21,7 +21,7 @@ const Task = ({ task }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper onClick={() => showTask()}>
       <ActionWrapper>
         <input
           type="checkbox"

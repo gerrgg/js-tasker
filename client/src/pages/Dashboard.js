@@ -5,11 +5,18 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Content from "../components/Content";
+import Shelf from "../components/Shelf";
 
 const Dashboard = ({ setToken }) => {
   const { client } = useQuery(MY_TASKS, { fetchPolicy: "network-only" });
 
   const [page, setPage] = useState("tasks");
+  const [openShelf, setOpenShelf] = useState(false);
+
+  const showTask = () => {
+    console.log("open");
+    setOpenShelf(!openShelf);
+  };
 
   const logout = () => {
     setToken(null);
@@ -23,7 +30,8 @@ const Dashboard = ({ setToken }) => {
       <div style={{ width: "100%" }}>
         <Header logout={logout} />
         <Overlay />
-        <Content page={page} />
+        <Content page={page} showTask={showTask} />
+        <Shelf open={openShelf} setOpenShelf={setOpenShelf} />
       </div>
     </Wrapper>
   );

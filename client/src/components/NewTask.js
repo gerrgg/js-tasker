@@ -62,7 +62,7 @@ const TaskWrapper = styled(FormControl)`
   margin-bottom: 1.5rem;
 `;
 
-const TaskField = styled(TextField)`
+export const TaskField = styled(TextField)`
   background-color: transparent;
   padding: 0.25rem 0 0.5rem;
   color: #333;

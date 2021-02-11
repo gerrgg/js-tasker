@@ -12,10 +12,12 @@ const Dashboard = ({ setToken }) => {
 
   const [page, setPage] = useState("tasks");
   const [openShelf, setOpenShelf] = useState(false);
+  const [currentTask, setCurrentTask] = useState(null);
 
-  const showTask = () => {
+  const showTask = (task) => {
     console.log("open");
     setOpenShelf(!openShelf);
+    setCurrentTask(task);
   };
 
   const logout = () => {
@@ -31,7 +33,11 @@ const Dashboard = ({ setToken }) => {
         <Header logout={logout} />
         <Overlay />
         <Content page={page} showTask={showTask} />
-        <Shelf open={openShelf} setOpenShelf={setOpenShelf} />
+        <Shelf
+          open={openShelf}
+          setOpenShelf={setOpenShelf}
+          task={currentTask}
+        />
       </div>
     </Wrapper>
   );

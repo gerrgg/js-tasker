@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FormControl } from "../components/Form";
+import { FormControl } from "./Form";
+
 import { TOGGLE_COMPLETE } from "../queries/task";
-import { useMutation } from "@apollo/client";
 import { FaCheck } from "react-icons/fa";
 import { TaskField } from "./NewTask";
+import { ADD_TASK, MY_TASKS } from "../queries/task";
+import { useMutation } from "@apollo/client";
 
-const Task = ({ task, showTask }) => {
+export const EditTask = ({ task }) => {
   const [complete, setComplete] = useState(task.complete);
+
+  const handleChange = (status) => {
+    setComplete(status);
+    toggleComplete({ variables: { id: task.id, complete: status } });
+  };
 
   const [toggleComplete] = useMutation(TOGGLE_COMPLETE, {
     onError: (error) => {
@@ -15,9 +22,35 @@ const Task = ({ task, showTask }) => {
     },
   });
 
-  const handleChange = (status) => {
-    setComplete(status);
-    toggleComplete({ variables: { id: task.id, complete: status } });
+  const [content, setContent] = useState(task.content);
+  const [hasFocus, setHasFocus] = useState(false);
+
+  const [addTask] = useMutation(ADD_TASK, {
+    onError: (error) => {
+      console.log(error);
+    },
+    refetchQueries: [{ query: MY_TASKS }],
+  });
+
+  const handleBlur = (content) => {
+    if (content.length > 0) {
+      addTask({
+        variables: { content },
+      });
+    }
+    setContent("");
+    setHasFocus(false);
+  };
+
+  /**
+   * Submit task on enter if the input has focus and the enter key is clicked
+   * @param String code
+   * @param Node target
+   */
+  const handleKeyDown = (code, target) => {
+    if (hasFocus && code === "Enter") {
+      handleBlur(target.value);
+    }
   };
 
   return (
@@ -36,12 +69,18 @@ const Task = ({ task, showTask }) => {
         />
         <Circle complete={complete}>{complete ? <FaCheck /> : null}</Circle>
       </ActionWrapper>
-      <Text complete={complete} onClick={() => showTask(task)}>
-        {task.content}
-      </Text>
+      <EditTaskField
+        value={content}
+        onFocus={() => setHasFocus(true)}
+        onBlur={({ target }) => handleBlur(target.value)}
+        onKeyDown={({ code, target }) => handleKeyDown(code, target)}
+        onChange={({ target }) => setContent(target.value)}
+      />
     </Wrapper>
   );
 };
+
+export default EditTask;
 
 const Wrapper = styled(FormControl)`
   display: flex;
@@ -75,17 +114,12 @@ const Circle = styled.div`
   align-items: center;
 `;
 
-const Text = styled.p`
-  text-decoration: ${(props) => (props.complete ? "line-through" : "none")};
-  color: ${(props) => (props.complete ? "#c1c1c1" : "#fff")};
-  overflow: hidden;
-  padding: 0 0.5rem;
-  width: 100%;
-`;
-
 const EditTaskField = styled(TaskField)`
   margin: 0 1rem;
   font-weight: 800;
+  font-size: 0.9rem;
+  max-width: 50%;
+  &:focus {
+    border: 1px solid #333;
+  }
 `;
-
-export default Task;
